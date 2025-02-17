@@ -1,7 +1,6 @@
 #pragma once
 #include "game.h"
 
-player_t init_player(int is_white);
-piece generate_unit(piece_t id, int row, int column, int is_white);
-player_t generate_player(int is_white, int row);
-game start_game();
+char piece_char(piece_t my_piece);
+void add_to_board(char board[8][8], char p, int row, int col);
+char (*start_game())[8];
