@@ -5,12 +5,12 @@
 #include "game.h"
 
 int main() {
-  printf("Welcome to c-chess!\n");
-  printf("Want to play the game?\n");
-  game my_game = start_game();
+  printf("Welcome to cccc!\n");
+  printf("Want to play some Chess?\n");
+  char (*board)[8] = start_game();
   while (1) {
-    print_to_console(my_game);
-    sleep(1); // Delay for 1 second
+    print_to_console(board);
+    sleep(1);
   }
   return 0; 
 }
