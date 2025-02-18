@@ -1,16 +1,15 @@
 #include <stdio.h>
 #include "game.h"
 
-void print_to_console(char board[8][8]) {
+void print_to_console(char *board) {
 
   printf("\033[H\033[J");
-  printf("\t");
-  for (int i = 7; i >= 0; i--) {
-    for (int j = 0; j < 8; j++) {
-      printf("%c ", board[i][j]);
-    }
-    printf("%d\n\t", i + 1);
-  }
 
-  printf("A B C D E F G H\n");
+  for (int i = 0; i < 64; i++) {
+    if(i % 8 == 0 || i == 0) {
+      printf("\n %d ", (i / 8) + 1);
+    }
+    printf(" %c", board[i]);
+  }
+  printf("\n    A B C D E F G H\n");
 }
