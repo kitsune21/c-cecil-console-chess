@@ -7,7 +7,7 @@
 int main() {
   printf("Welcome to cccc!\n");
   printf("Want to play some Chess?\n");
-  char (*board)[8] = start_game();
+  char *board = start_game();
   while (1) {
     print_to_console(board);
     sleep(1);

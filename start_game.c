@@ -33,48 +33,53 @@ char piece_char(piece_t my_piece) {
   }
 }
 
-void add_to_board(char board[8][8], char p, int row, int col) {
-  board[row][col] = p;
+int convert_row_column_to_index(int row, int col) {
+  int index = 0;
+  index += row * 8;
+  index += col;
+  return index;
 }
 
-char (*start_game())[8] {
-  char (*board)[8] = malloc(sizeof(char[8][8]));
+void add_to_board(char *board, char p, int row, int col) {
+  board[convert_row_column_to_index(row, col)] = p;
+}
+
+char *start_game() {
+  char *board = malloc(sizeof(char) * 64);
   if (board == NULL) {
     perror("Failed to allocate memory for the board");
     exit(EXIT_FAILURE);
   }
 
-  for (int i = 0; i < 8; i++) {
-    for (int j = 0; j < 8; j++) {
-      board[i][j] = '.';
-    }
+  for (int i = 0; i < 64; i++) {
+    board[i] = '.';
   }
 
   for (int i = 0; i < 8; i++) {
-    add_to_board(board, piece_char(W_PAWN), 1, i);
+    add_to_board(board, piece_char(W_PAWN), 6, i);
   }
 
-  add_to_board(board, piece_char(W_ROOK),   0, 0);
-  add_to_board(board, piece_char(W_KNIGHT), 0, 1);
-  add_to_board(board, piece_char(W_BISHOP), 0, 2);
-  add_to_board(board, piece_char(W_QUEEN),  0, 3);
-  add_to_board(board, piece_char(W_KING),   0, 4);
-  add_to_board(board, piece_char(W_BISHOP), 0, 5);
-  add_to_board(board, piece_char(W_KNIGHT), 0, 6);
-  add_to_board(board, piece_char(W_ROOK),   0, 7);
+  add_to_board(board, piece_char(W_ROOK),   7, 0);
+  add_to_board(board, piece_char(W_KNIGHT), 7, 1);
+  add_to_board(board, piece_char(W_BISHOP), 7, 2);
+  add_to_board(board, piece_char(W_QUEEN),  7, 3);
+  add_to_board(board, piece_char(W_KING),   7, 4);
+  add_to_board(board, piece_char(W_BISHOP), 7, 5);
+  add_to_board(board, piece_char(W_KNIGHT), 7, 6);
+  add_to_board(board, piece_char(W_ROOK),   7, 7);
 
   for (int i = 0; i < 8; i++) {
-    add_to_board(board, piece_char(B_PAWN), 6, i);
+    add_to_board(board, piece_char(B_PAWN), 1, i);
   }
 
-  add_to_board(board, piece_char(B_ROOK),   7, 0);
-  add_to_board(board, piece_char(B_KNIGHT), 7, 1);
-  add_to_board(board, piece_char(B_BISHOP), 7, 2);
-  add_to_board(board, piece_char(B_QUEEN),  7, 3);
-  add_to_board(board, piece_char(B_KING),   7, 4);
-  add_to_board(board, piece_char(B_BISHOP), 7, 5);
-  add_to_board(board, piece_char(B_KNIGHT), 7, 6);
-  add_to_board(board, piece_char(B_ROOK),   7, 7);
+  add_to_board(board, piece_char(B_ROOK),   0, 0);
+  add_to_board(board, piece_char(B_KNIGHT), 0, 1);
+  add_to_board(board, piece_char(B_BISHOP), 0, 2);
+  add_to_board(board, piece_char(B_QUEEN),  0, 3);
+  add_to_board(board, piece_char(B_KING),   0, 4);
+  add_to_board(board, piece_char(B_BISHOP), 0, 5);
+  add_to_board(board, piece_char(B_KNIGHT), 0, 6);
+  add_to_board(board, piece_char(B_ROOK),   0, 7);
 
   return board;
 }
