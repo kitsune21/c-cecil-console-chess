@@ -9,9 +9,9 @@ char piece_char(piece_t my_piece) {
   case B_PAWN:
     return 'p';
   case W_KNIGHT:
-    return 'H';
+    return 'N';
   case B_KNIGHT:
-    return 'h';
+    return 'n';
   case W_BISHOP:
     return 'B';
   case B_BISHOP:

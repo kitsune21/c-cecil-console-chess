@@ -4,10 +4,12 @@
 void print_to_console(char *board) {
 
   printf("\033[H\033[J");
+  int row_num = 8;
 
   for (int i = 0; i < 64; i++) {
     if(i % 8 == 0 || i == 0) {
-      printf("\n %d ", (i / 8) + 1);
+      printf("\n %d ", row_num);
+      row_num--;
     }
     printf(" %c", board[i]);
   }
