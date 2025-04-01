@@ -81,5 +81,9 @@ char *start_game() {
   add_to_board(board, piece_char(B_KNIGHT), 0, 6);
   add_to_board(board, piece_char(B_ROOK),   0, 7);
 
+  add_to_board(board, piece_char(W_KING), 4, 1);
+  add_to_board(board, piece_char(B_PAWN), 4, 0);
+  add_to_board(board, piece_char(B_PAWN), 4, 2);
+
   return board;
 }
