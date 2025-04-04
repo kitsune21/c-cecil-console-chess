@@ -1,8 +1,9 @@
 #include "validate_move.c"
 
-char *get_user_input() {
+char *get_user_input(int player) {
   char* input = malloc(sizeof(char) * 4);
-  printf("Input your move: ");
+  char* player_name = player ? "Player 2" : "Player 1";
+  printf("\n%s, Input your move: ", player_name);
   scanf("%s", input);
   return input;
 }
@@ -128,11 +129,11 @@ int handle_input(char *board, char *input, int player) {
   if(valid_piece(board[player_piece_index], player)) {
     if(valid_square(board[selected_square_index], player)) {
       if(validate_move(board, player_piece_index, selected_square_index, player)) {
+        board[selected_square_index] = board[player_piece_index];
+        board[player_piece_index] = '.';
         return 1;
       }
-      return 0;
     }
-    return 0;
   }
 
   return 0;

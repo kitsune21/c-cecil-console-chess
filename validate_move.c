@@ -50,6 +50,15 @@ int is_in_column(int start, int column) {
 int check_direction(int start, int end, int player, char *board, int direction, int distance) {
   int step = (start < end) ? direction : -direction;
   int i = start + step;
+  if(direction == CHECK_RIGHT_DIAG && is_in_column(start, 0)) {
+    return 0;
+  }
+  if(direction == CHECK_LEFT_DIAG && is_in_column(start, 7)) {
+    return 0;
+  }
+  if(direction == CHECK_ROW && !is_in_row(start, end)) {
+    return 0;
+  }
   
   while (i != end && i < 64 && i >= 0 && distance > 0) {
     if (board[i] != '.') {
@@ -80,7 +89,7 @@ int validate_pawn(char *board, int start, int end, int player) {
       }
     }
   }
-  if(end == start + (8 * direction)) {
+  if(end == start + (8 * direction) && (!isupper(board[end]) && !islower(board[end]))) {
     return 1;
   }
   if(!player && islower(board[end])) {
@@ -103,8 +112,28 @@ int validate_pawn(char *board, int start, int end, int player) {
 }
 
 int validate_knight(char *board, int start, int end) {
-  //check -17, -15, -10, -6 and reverse
-  return 1;
+  int diff = end - start;
+
+  if (is_in_column(start, 0)) {
+    if (diff == -10 || diff == 6 || diff == -17 || diff == 15) {
+      return 0;
+    }
+  } else if (is_in_column(start, 1)) {
+    if (diff == -10 || diff == 6) {
+      return 0;
+    }
+  } else if (is_in_column(start, 6)) {
+    if (diff == -6 || diff == 10) {
+      return 0;
+    }
+  } else if (is_in_column(start, 7)) {
+    if (diff == 10 || diff == -6 || diff == 17 || diff == -15) {
+      return 0;
+    }
+  }
+
+  return (diff == -17 || diff == -15 || diff == -10 || diff == -6 ||
+    diff == 17 || diff == 15 || diff == 10 || diff == 6);
 }
 
 int validate_bishop(char *board, int start, int end, int player) {
