@@ -108,14 +108,6 @@ int valid_square(char square, int player) {
 }
 
 int handle_input(char *board, char *input, int player) {
-  //convert the input to the two indexes
-  //->make it all lowercase
-  //->split it into player piece and selected square
-  //check that the player piece is valid
-  //->Is a piece of the correct color
-  //check that the selected square is valid
-  //->Is not a piece of the same color as the player
-  //move the piece to the selected square
   int player_piece = 0;
   int selected_square = 0;
   

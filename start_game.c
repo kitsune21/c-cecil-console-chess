@@ -81,8 +81,5 @@ char *start_game() {
   add_to_board(board, piece_char(B_KNIGHT), 0, 6);
   add_to_board(board, piece_char(B_ROOK),   0, 7);
 
-  //testing pieces
-  //add_to_board(board, piece_char(W_KNIGHT), 3, 7);
-
   return board;
 }
